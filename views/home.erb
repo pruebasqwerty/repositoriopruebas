@@ -1,0 +1,21 @@
+<h3>UPLOADED FILES:</h3>
+<% resources = Resource.all :order => :id.asc  %>
+<table class="table table-striped">
+	<tr>
+		<td><b>Name</b></td>
+		<td><b>Actions</b></td>
+	</tr>
+	<% resources.each do |resource| %>
+		<tr>
+			<td><%= h resource.file_file_name %></td>
+			<td>
+				<button type="button" class="btn btn-default btn-sm" onclick="console.log('<%= resource.file.url %>')">
+  					<span class="glyphicon glyphicon-remove"></span> Remove
+				</button>
+				<button type="button" class="btn btn-default btn-sm" onclick="window.location = '<%= resource.file.url %>'">
+  					<span class="glyphicon glyphicon-remove"></span> View
+				</button>
+			</td>
+		</tr>
+	<% end %>
+</table>
