@@ -9,12 +9,25 @@ class Resource
   include DataMapper::Resource
   include Paperclip::Resource
 
-  property :id,     Serial
-
+  property :id,			Serial
+  belongs_to :project
+  
   has_attached_file :file,
                     :url => "/uploads/:basename-:id.:extension",
                     :path => "#{Dir.pwd}/public/uploads/:basename-:id.:extension"
 end
 
-Resource.auto_migrate!
+# Table storing the projects
+class Project
+  include DataMapper::Resource
+  
+  property :id,     		Serial
+  property :name,			String,	:length => 64,	:required => true
+  property :description,	String, :length => 255
+  
+  has n, :resources
+  
+end
+
+DataMapper.auto_migrate!
 DataMapper.finalize.auto_upgrade!

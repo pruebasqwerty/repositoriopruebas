@@ -1,13 +1,40 @@
-<h3>UPLOADED FILES:</h3>
+<h3>PROJECTS</h3>
 <% resources = Resource.all :order => :id.asc  %>
+<% projects = Project.all :order => :id.asc %>
+
 <table class="table table-striped">
 	<tr>
 		<td><b>Name</b></td>
+		<td><b>Description</b></td>
+		<td><b>Actions</b></td>
+	</tr>
+	<% projects.each do |project| %>
+		<tr>
+			<td><%= h project.name %></td>
+			<td><%= h project.description %></td>
+			<td>
+				<button type="button" class="btn btn-default btn-sm" onclick="#">
+  					<span class="glyphicon glyphicon-remove"></span> Remove
+				</button>
+				<button type="button" class="btn btn-default btn-sm" onclick="#">
+  					<span class="glyphicon glyphicon-remove"></span> View
+				</button>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<center><button class="btn btn-default" onclick="window.location = '/newProject'">Create New</button></center>
+<!--
+<table class="table table-striped">
+	<tr>
+		<td><b>Name</b></td>
+		<td><b>Project</b></td>
 		<td><b>Actions</b></td>
 	</tr>
 	<% resources.each do |resource| %>
 		<tr>
 			<td><%= h resource.file_file_name %></td>
+			<td><%= h resource.project.id %></td>
 			<td>
 				<button type="button" class="btn btn-default btn-sm" onclick="console.log('<%= resource.file.url %>')">
   					<span class="glyphicon glyphicon-remove"></span> Remove
@@ -19,3 +46,4 @@
 		</tr>
 	<% end %>
 </table>
+-->

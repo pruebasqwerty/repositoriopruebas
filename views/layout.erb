@@ -33,6 +33,12 @@
 
   <div class="container" d="main">
   	<br><br><br>
+  	<% if (defined? @message) %>
+	  <div class="alert alert-<%= @message[1] %> alert-dismissable">
+	    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= @message[0] %>
+	  </div>
+    <% end %>
     <%= yield %>
     <br><br>
   </div>
